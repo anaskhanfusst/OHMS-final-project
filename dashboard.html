@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Open House Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ─── DESKTOP HEADER TOGGLE BUTTON (DEFAULT HIDDEN) ─── */
+        .mobile-toggle-bar {
+            display: none;
+            background-color: white;
+            padding: 10px 15px;
+            border-bottom: 1px solid lightgray;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .mobile-logo-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        .mobile-logo-btn img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        /* ─── RESPONSIVE SMART SLIDE SIDEBAR DESIGN ─── */
+        @media screen and (max-width: 768px) {
+            /* Show Mobile Header Top Bar */
+            .mobile-toggle-bar {
+                display: flex !important;
+            }
+
+            /* Sidebar ko default me screen se bahar left pr hide kar diya */
+            .sidebar {
+                position: fixed !important;
+                top: 0 !important;
+                left: -90px !important; /* Completely hidden off-screen */
+                width: 75px !important;
+                height: 100vh !important;
+                z-index: 9999 !important;
+                padding: 20px 5px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            }
+
+            /* Active class jo click karne par sidebar ko screen par le aayegi */
+            .sidebar.show-sidebar {
+                left: 0 !important;
+            }
+
+            /* Sidebar brand elements toggle config */
+            .sidebar-brand {
+                justify-content: center !important;
+                margin-bottom: 25px !important;
+                width: 100%;
+            }
+            .sidebar-brand div:not(.brand-icon),
+            .brand-name,
+            .brand-sub {
+                display: none !important;
+            }
+            .brand-icon img {
+                width: 40px !important;
+                height: 40px !important;
+                object-fit: contain;
+            }
+
+            /* Sirf span wale emoji links active rahenge */
+            .sidebar-nav {
+                width: 100%;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 15px !important;
+            }
+            .sidebar-nav a {
+                justify-content: center !important;
+                padding: 0 !important;
+                width: 45px !important;
+                height: 45px !important;
+                display: flex !important;
+                align-items: center !important;
+                border-radius: 8px;
+            }
+            .sidebar-nav a span:not(.nav-icon) {
+                display: none !important;
+            }
+            .nav-icon {
+                font-size: 22px !important;
+                margin: 0 !important;
+            }
+
+            /* Sidebar bottom area modifications */
+            .custom-credits {
+                display: none !important;
+            }
+            .sidebar-footer-container {
+                width: 100%;
+                display: flex !important;
+                justify-content: center !important;
+                margin-top: auto;
+            }
+            .logout-link {
+                justify-content: center !important;
+                padding: 0 !important;
+                width: 45px !important;
+                height: 45px !important;
+                display: flex !important;
+                align-items: center !important;
+            }
+            .logout-link span:not(.nav-icon) {
+                display: none !important;
+            }
+
+            /* Main content full width par shift ho jayega bina left margin k */
+            .main-content {
+                margin-left: 0 !important;
+                padding: 20px 15px !important;
+            }
+
+            /* Grid stacked layout rules */
+            .cards-grid, 
+            .projects-card-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;
+            }
+
+            .page-header {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 12px !important;
+            }
+            .btn-primary-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-toggle-bar">
+        <button class="mobile-logo-btn" onclick="toggleSidebar(event)" title="Toggle Sidebar">
+            <img src="bigbird.png" alt="Big Bird Toggle Menu">
+        </button>
+    </div>
+
+    <div class="sidebar" id="appSidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon">
+                <img src="bigbird.png" alt="Open House Logo">
+            </div>
+            <div>
+                <div class="brand-name">Open House</div>
+                <div class="brand-sub">Management System</div>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="active"><span class="nav-icon">📊</span><span>Dashboard</span></a>
+            <a href="projects.html"><span class="nav-icon">✅</span><span>Approved Projects</span></a>
+            <a href="add-project.html"><span class="nav-icon">➕</span><span>Add Project</span></a>
+            <a href="my-projects.html"><span class="nav-icon">📁</span><span>My Projects</span></a>
+        </nav>
+        
+        <div class="sidebar-footer-container">
+            <div class="custom-credits">
+                Developed by a <sup>2</sup> Group
+            </div>
+            <a href="#" onclick="logout()" class="logout-link"><span class="nav-icon">🚪</span><span>Logout</span></a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="page-header">
+            <div>
+                <h1>Dashboard</h1>
+                <p>Welcome! Here is an overview of all your projects.</p>
+            </div>
+            <a href="add-project.html" class="btn-primary-link">➕ Add Project</a>
+        </div>
+
+        <div class="cards-grid">
+            <div class="kpi-card" style="--kpi-accent:#16a34a;">
+                <span class="kpi-icon">✅</span>
+                <p>Approved Projects</p>
+                <h2 id="approvedCount">0</h2>
+            </div>
+            <div class="kpi-card" style="--kpi-accent:#f59e0b;">
+                <span class="kpi-icon">⏳</span>
+                <p>Pending Review</p>
+                <h2 id="pendingCount">0</h2>
+            </div>
+            <div class="kpi-card" style="--kpi-accent:#208181;">
+                <span class="kpi-icon">📁</span>
+                <p>My Submissions</p>
+                <h2 id="myCount">0</h2>
+                
+            </div>
+        </div>
+
+        <div class="section-heading">✅ Approved Projects</div>
+        <div id="approvedProjectsGrid" class="projects-card-grid"></div>
+    </div>
+    
+    <div class="proj-modal-overlay" id="projectDetailModal">
+        <div class="proj-modal-card"></div>
+    </div>
+
+    <script>
+        function toggleSidebar(event) {
+            event.stopPropagation(); // Event ko window par bubble hone se rokega
+            const sidebar = document.getElementById('appSidebar');
+            sidebar.classList.toggle('show-sidebar');
+        }
+
+        // Agar sidebar khula ho aur user screen par kahin bhi bahar click kare to auto-hide ho jaye
+        window.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('appSidebar');
+            if (sidebar.classList.contains('show-sidebar')) {
+                // Check agar click sidebar ke andar nahi hua hai
+                if (!sidebar.contains(e.target)) {
+                    sidebar.classList.remove('show-sidebar');
+                }
+            }
+        });
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

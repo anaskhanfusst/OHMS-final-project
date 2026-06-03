@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - OHMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* Same exact dynamic radial background from your portal choice page */
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 50%, #ffffff 0%, #91dfe4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Ambient background subtle lighting */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(214, 210, 210, 0.15) 0%, transparent 70%);
+            top: 10%;
+            left: 10%;
+            z-index: 0;
+        }
+
+        .form-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+        }
+
+        /* Glassmorphic premium white card */
+        .login-box {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 28px;
+            padding: 40px 35px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Bright elegant glow shadow emission on hover matching the ecosystem UI */
+        .login-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(44, 179, 179, 0.3);
+            box-shadow: 0 25px 50px rgba(15, 23, 42, 0.08), 
+                        0 0 40px rgba(44, 179, 179, 0.25);
+        }
+
+        /* Brand logo identity section wrapper */
+        .portal-logo-area {
+            margin-bottom: 20px;
+            display: inline-block;
+            text-decoration: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            box-shadow: 0 8px 20px rgba(32, 129, 129, 0.1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin: 0 auto;
+        }
+
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .portal-logo-area:hover .logo-placeholder {
+            transform: rotate(-10deg) scale(1.08);
+        }
+
+        .login-box h2 {
+            color: #0f172a;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+
+        .login-box .subtitle {
+            color: #475569;
+            font-size: 13.5px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* Premium Form fields & dynamic input boundaries */
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            color: #334155;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            padding-left: 4px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #cbd5e1;
+            border-radius: 14px;
+            font-size: 14.5px;
+            color: #0f172a;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #208181;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(32, 129, 129, 0.1);
+        }
+
+        /* Sea green primary submit button action mapping your choice page */
+        .btn-submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px 24px;
+            background: #208181;
+            color: #ffffff;
+            border: none;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(32, 129, 129, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 25px;
+        }
+
+        .btn-submit:hover {
+            background: #2cb3b3;
+            box-shadow: 0 6px 22px rgba(100, 246, 227, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Footer context switch links styling */
+        .switch-auth-text {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 14px;
+            color: #475569;
+        }
+
+        .switch-auth-text a {
+            color: #208181;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            margin-left: 4px;
+        }
+
+        .switch-auth-text a:hover {
+            color: #2cb3b3;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="login-box">
+            
+            <div class="portal-logo-area">
+                <div class="logo-placeholder">
+                    <img src="bigbird.png" alt="OHMS Logo">
+                </div>
+            </div>
+
+            <h2>Create Platform Profile</h2>
+            <p class="subtitle">Join the ecosystem network tracking index layer nodes.</p>
+
+            <form id="signupForm">
+                <div class="form-group">
+                    <label>Legal Account Holder Full Name</label>
+                    <input type="text" id="name" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Designated Workspace Email Address</label>
+                    <input type="email" id="signupEmail" placeholder="johndoe@work.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Configure Secure Password Encryption</label>
+                    <input type="password" id="signupPassword" placeholder="Minimum 8 characters" required>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Establish Authorized Node
+                </button>
+            </form>
+
+            <p class="switch-auth-text">
+                Already have a profile? <a href="user-login.html">Login Here</a>
+            </p>
+
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

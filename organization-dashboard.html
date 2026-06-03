@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Open House Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon">
+                <img src="bigbird.png" alt="Open House Logo">
+            </div>
+            <div>
+                <div class="brand-name">Admin Panel</div>
+                <div class="brand-sub">Open House Management</div>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#" onclick="renderAdminTable('all')" class="active"><span class="nav-icon">📋</span><span>All Projects</span></a>
+            <a href="#" onclick="renderAdminTable('Pending')"><span class="nav-icon">⏳</span><span>Pending Review</span></a>
+            <a href="#" onclick="renderAdminTable('Approved')"><span class="nav-icon">✅</span><span>Approved</span></a>
+            <a href="#" onclick="renderAdminTable('Rejected')"><span class="nav-icon">❌</span><span>Rejected</span></a>
+        </nav>
+        
+        <div class="sidebar-footer-container">
+            <div class="custom-credits">
+                Developed by a <sup>2</sup> Group
+            </div>
+            <a href="#" onclick="logoutOrganization()" class="logout-link"><span class="nav-icon">🚪</span><span>Logout</span></a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="page-header">
+            <div>
+                <h1>Admin Review Console</h1>
+                <p>Review, approve, or reject all submitted project proposals.</p>
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="kpi-card" style="--kpi-accent:#208181;">
+                <span class="kpi-icon">📊</span>
+                <p>Total Projects</p>
+                <h2 id="adminTotal">0</h2>
+            </div>
+            <div class="kpi-card" style="--kpi-accent:#f59e0b;">
+                <span class="kpi-icon">⏳</span>
+                <p>Pending Review</p>
+                <h2 id="adminPending">0</h2>
+            </div>
+            <div class="kpi-card" style="--kpi-accent:#16a34a;">
+                <span class="kpi-icon">✅</span>
+                <p>Approved</p>
+                <h2 id="adminApproved">0</h2>
+            </div>
+            <div class="kpi-card" style="--kpi-accent:#ef4444;">
+                <span class="kpi-icon">❌</span>
+                <p>Rejected</p>
+                <h2 id="adminRejected">0</h2>
+            </div>
+        </div>
+
+        <div class="section-heading">📋 All Project Submissions</div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Project Title</th>
+                        <th>Submitted By</th>
+                        <th>Category</th>
+                        <th>Submission Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="adminDashboardTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="proj-modal-overlay" id="projectDetailModal">
+        <div class="proj-modal-card"></div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

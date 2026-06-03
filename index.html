@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open House Management System - Welcome</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 50%, #ffffff 0%, #91dfe4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Ambient background subtle lighting */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(214, 210, 210, 0.15) 0%, transparent 70%);
+            top: 10%;
+            left: 10%;
+            z-index: 0;
+        }
+
+        .choice-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+        }
+
+        /* Centralized Interactive Management Card */
+        .choice-box {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px 35px;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 🔥 USER EXPECTED REQUIREMENT: Bright Shadow / Glow Effect on Card Hover */
+        .choice-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(37, 99, 235, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 
+                        0 0 50px rgba(37, 99, 235, 0.25); /* Cyan/Blue smooth emission aura */
+        }
+
+        /* 🖼️ USER EXPECTED REQUIREMENT: Dummy Logo Link Wrapper */
+        .portal-logo-area {
+            margin-bottom: 25px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .logo-placeholder {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #3beaf6 0%, #1dd2d8 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
+            transition: transform 0.4s ease;
+            margin: 0 auto;
+        }
+
+        /* Dynamic image fallback selector if user injects real img later */
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 18px;
+        }
+
+        .portal-logo-area:hover .logo-placeholder {
+            transform: rotate(8deg) scale(1.05);
+        }
+
+        .choice-box h1 {
+            color: #f8fafc;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .choice-box p {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        /* ⚡ BUTTON MANAGEMENT AREA & HOVER ACTIONS */
+        .action-buttons-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .choice-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px 24px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Primary Button: Dashboard Link */
+        .btn-user {
+            background: #208181;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-user:hover {
+            background: #2cb3b3;
+            box-shadow: 0 6px 20px rgba(100, 246, 227, 0.4);
+            transform: scale(1.02);
+        }
+
+        /* Secondary Button: Admin Area Link */
+        .btn-admin {
+            background: #475569;
+            color: #f1f5f9;
+            box-shadow: 0 4px 12px rgba(71, 85, 105, 0.2);
+        }
+
+        .btn-admin:hover {
+            background: #334155;
+            color: #ffffff;
+            box-shadow: 0 6px 20px rgba(71, 85, 105, 0.4);
+            transform: scale(1.02);
+        }
+
+        /* Subtle button active state press visual feedback */
+        .choice-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="choice-container">
+        <div class="choice-box">
+            
+            <a href="#" class="portal-logo-area" title="OHMS Branding Identity">
+                <div class="logo-placeholder">
+                  <img src="open-house.png" alt="OHMS Origami Logo">
+                </div>
+            </a>
+
+            <h1>OHMS Portal</h1>
+            <p>Welcome to Open House Management System. Please select your target access level to continue workflow management.</p>
+
+            <div class="action-buttons-wrapper">
+                <a href="user-login.html" class="choice-btn btn-user">
+                    <span>🤵‍♂️</span> User Login Dashboard
+                </a>
+                
+                <a href="organization-login.html" class="choice-btn btn-admin">
+                    <span>⚙️</span> Organization Admin Area
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

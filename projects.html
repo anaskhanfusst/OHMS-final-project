@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approved Projects - Open House Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon">🏛️</div>
+            <div class="brand-name">Open House</div>
+            <div class="brand-sub">Management System</div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html"><span class="nav-icon">📊</span><span>Dashboard</span></a>
+            <a href="projects.html" class="active"><span class="nav-icon">✅</span><span>Approved Projects</span></a>
+            <a href="add-project.html"><span class="nav-icon">➕</span><span>Add Project</span></a>
+            <a href="my-projects.html"><span class="nav-icon">📁</span><span>My Projects</span></a>
+        </nav>
+        <a href="#" onclick="logout()" class="logout-link"><span class="nav-icon">🚪</span><span>Logout</span></a>
+    </div>
+
+    <div class="main-content">
+        <div class="page-header">
+            <div>
+                <h1>Approved Projects</h1>
+                <p>These are all the projects that have been approved.</p>
+            </div>
+        </div>
+        <div id="globalProjectsGrid" class="projects-card-grid"></div>
+    </div>
+
+    <div class="proj-modal-overlay" id="projectDetailModal">
+        <div class="proj-modal-card"></div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

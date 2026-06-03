@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Login - OHMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* 👑 UPDATED: Royal Blueish radial background spectrum */
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 50%, #ffffff 0%, #a2c2f7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Ambient background subtle lighting */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, transparent 70%);
+            top: 10%;
+            left: 10%;
+            z-index: 0;
+        }
+
+        .form-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+        }
+
+        /* Glassmorphic premium white card */
+        .login-box {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 28px;
+            padding: 40px 35px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 🔥 UPDATED: Deep tech-blue glowing aura emission on hover */
+        .login-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(37, 99, 235, 0.3);
+            box-shadow: 0 25px 50px rgba(15, 23, 42, 0.08), 
+                        0 0 40px rgba(37, 99, 235, 0.25);
+        }
+
+        /* Shared Branding Identity Logo Container */
+        .portal-logo-area {
+            margin-bottom: 20px;
+            display: inline-block;
+            text-decoration: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin: 0 auto;
+        }
+
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .portal-logo-area:hover .logo-placeholder {
+            transform: rotate(-10deg) scale(1.08);
+        }
+
+        .login-box h2 {
+            color: #0f172a;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+
+        .login-box .subtitle {
+            color: #475569;
+            font-size: 13.5px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* Premium Form fields structure */
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            color: #475569;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            padding-left: 4px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #cbd5e1;
+            border-radius: 14px;
+            font-size: 14.5px;
+            color: #0f172a;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        /* ⚡ UPDATED: Input focus blue accent ring */
+        .form-group input:focus {
+            border-color: #2563eb;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
+        }
+
+        /* ⚡ UPDATED: Tech-Blue primary submit action button */
+        .btn-submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px 24px;
+            background: #2563eb;
+            color: #ffffff;
+            border: none;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 25px;
+        }
+
+        .btn-submit:hover {
+            background: #1d4ed8;
+            box-shadow: 0 6px 22px rgba(37, 99, 235, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0) scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="login-box">
+            
+            <!-- Branding Identity Logo Assignment -->
+            <div class="portal-logo-area">
+                <div class="logo-placeholder">
+                    <img src="bigbird.png" alt="OHMS Logo">
+                </div>
+            </div>
+
+            <h2>Organization Sign In</h2>
+            <p class="subtitle">Protected system layer framework. Admin clearance required.</p>
+
+            <form id="organizationLogin">
+                <div class="form-group">
+                    <label>Admin Access Email Address</label>
+                    <input type="email" id="adminEmail" value="admin@openhouse.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Secret Master Token Phrase</label>
+                    <input type="password" id="adminPassword" value="admin123" required>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Verify Authorization Credential
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
