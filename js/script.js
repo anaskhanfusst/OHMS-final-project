@@ -8,6 +8,34 @@ let pollingInterval = null;
 let lastFingerprint = "";
 const POLL_INTERVAL_MS = 1000; // 1 second - instant live updates
 
+
+// ==========================================
+// DARK THEME TOGGLE — runs immediately on load
+// ==========================================
+(function initDarkTheme() {
+    // Apply saved preference before page renders (no flash)
+    if (localStorage.getItem("ohms_dark") === "true") {
+        document.body.classList.add("dark");
+    }
+
+    // Inject the floating toggle button into every page
+    document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.createElement("button");
+        btn.id = "darkToggleBtn";
+        btn.title = "Toggle Dark / Light Theme";
+        btn.innerHTML = document.body.classList.contains("dark") ? "☀️" : "🌙";
+
+        btn.addEventListener("click", () => {
+            const isDark = document.body.classList.toggle("dark");
+            localStorage.setItem("ohms_dark", isDark);
+            btn.innerHTML = isDark ? "☀️" : "🌙";
+        });
+
+        document.body.appendChild(btn);
+    });
+})();
+
+
 // ==========================================
 // TOAST NOTIFICATION SYSTEM
 // ==========================================

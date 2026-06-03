@@ -173,6 +173,50 @@ app.delete('/api/projects/:id', async (req, res) => {
     }
 });
 
+// 7. Project Edit/Update karne ki API (title, category, description, image, members)
+app.put('/api/projects/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const { title, category, abstract, supervisor, image, members } = req.body;
+
+        const updateData = { title, category, supervisor, abstract };
+
+        // Only update image if a new one was provided
+        if (image && image.length > 100) {
+            updateData.image = image;
+        }
+
+        // Update members if provided
+        if (members && members.length > 0) {
+            updateData.members = members;
+        }
+
+        let updatedProject;
+        if (id.startsWith('PROJ-')) {
+            updatedProject = await Project.findOneAndUpdate(
+                { id: id },
+                { $set: updateData },
+                { new: true }
+            );
+        } else {
+            updatedProject = await Project.findByIdAndUpdate(
+                id,
+                { $set: updateData },
+                { new: true }
+            );
+        }
+
+        if (!updatedProject) {
+            return res.status(404).json({ success: false, message: "Project not found" });
+        }
+
+        res.status(200).json({ success: true, message: "Project updated successfully!", project: updatedProject });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Error updating project", error: error.message });
+    }
+});
+
+
 // Server Start
 app.listen(PORT, () => {
     console.log(`📡 Backend Server listening seamlessly on http://localhost:${PORT}`);
