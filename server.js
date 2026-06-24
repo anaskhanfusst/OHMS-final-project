@@ -13,7 +13,7 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // 🔥 OPTIMIZED MONGODB ATLAS CONNECTION STRING (SRV FORMAT) - Configurable via .env
-const mongoURI = process.env.MONGODB_URI || "mongodb+srv://muhammadanasfusst_db_user:anasMONGO114119@cluster0.sua3hl8.mongodb.net/ohms_database?retryWrites=true&w=majority";
+const mongoURI = process.env.MONGODB_URI || "mongodb+srv://muhammadanasfusst_db_user:anasMONGODB114119@cluster0.sua3hl8.mongodb.net/ohms_database?retryWrites=true&w=majority";
 
 mongoose.connect(mongoURI, {
     serverSelectionTimeoutMS: 30000, // 30 Seconds timeout fallback
